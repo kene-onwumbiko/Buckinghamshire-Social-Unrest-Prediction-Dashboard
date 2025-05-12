@@ -24,10 +24,10 @@ helpdesk_datatypes = helpdesk.dtypes
 new_helpdesk = helpdesk.drop(columns = ["Team Lead", "Unnamed: 22", "SR No.", "Corrective Actions", 
                                         "Preventive Actions", "Closed By"])
 
-# Convert individual columns to datetime format
-new_helpdesk['Date Created'] = pd.to_datetime(new_helpdesk['Date Created'], errors='coerce')
-new_helpdesk['Last Updated'] = pd.to_datetime(new_helpdesk['Last Updated'], errors='coerce')
-new_helpdesk['Due Date'] = pd.to_datetime(new_helpdesk['Due Date'], errors='coerce')
+# Convert the columns with date and time to datetime format
+new_helpdesk["Date Created"] = pd.to_datetime(new_helpdesk["Date Created"], errors='coerce')
+new_helpdesk["Last Updated"] = pd.to_datetime(new_helpdesk["Last Updated"], errors='coerce')
+new_helpdesk["Due Date"] = pd.to_datetime(new_helpdesk["Due Date"], errors='coerce')
 
 # Drop duplicate rows and keep only unique ones from the new dataframe
 new_helpdesk = new_helpdesk.drop_duplicates()
