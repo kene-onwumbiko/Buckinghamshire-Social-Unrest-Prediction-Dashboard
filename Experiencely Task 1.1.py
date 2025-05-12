@@ -26,11 +26,14 @@ new_helpdesk = helpdesk.drop(columns = ["Team Lead", "Unnamed: 22", "SR No.", "C
 # Drop duplicate rows and keep only unique ones
 new_helpdesk = new_helpdesk.drop_duplicates()
 
+# Drop all rows with any missing values from new_helpdesk_unique
+new_helpdesk = new_helpdesk.dropna(axis=0)
+
 # # Drop all columns with missing values
 # new_helpdesk = helpdesk.dropna(axis=1)
 
-# # Check for missing values
-# new_helpdesk_missingvalues = new_helpdesk.isnull().sum()
+# Check for missing values
+new_helpdesk_missingvalues = new_helpdesk.isnull().sum()
 
 # # Check for duplicated values
 # new_helpdesk_duplicatedvalues = new_helpdesk.duplicated()
