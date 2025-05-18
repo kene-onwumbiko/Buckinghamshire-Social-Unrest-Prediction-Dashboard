@@ -25,15 +25,15 @@ new_helpdesk = helpdesk.drop(columns = ["Team Lead", "Unnamed: 22", "SR No.", "C
                                         "Preventive Actions", "Closed By"])
 
 # Convert the columns with date and time to datetime format
-new_helpdesk["Date Created"] = pd.to_datetime(new_helpdesk["Date Created"], errors = "coerce")
-new_helpdesk["Last Updated"] = pd.to_datetime(new_helpdesk["Last Updated"], errors = "coerce")
-new_helpdesk["Due Date"] = pd.to_datetime(new_helpdesk["Due Date"], errors = "coerce")
+new_helpdesk["Date Created"] = pd.to_datetime(new_helpdesk["Date Created"])
+new_helpdesk["Last Updated"] = pd.to_datetime(new_helpdesk["Last Updated"])
+new_helpdesk["Due Date"] = pd.to_datetime(new_helpdesk["Due Date"])
 
 # Drop duplicate rows and keep only unique ones from the new dataframe
 new_helpdesk = new_helpdesk.drop_duplicates()
 
-# Drop all rows with any missing values from the new dataframe
-new_helpdesk = new_helpdesk.dropna(axis = 0)
+# # Drop all rows with any missing values from the new dataframe
+# new_helpdesk = new_helpdesk.dropna(axis = 0)
 
 # Check for missing values in the new dataframe
 new_helpdesk_missingvalues = new_helpdesk.isnull().sum()
