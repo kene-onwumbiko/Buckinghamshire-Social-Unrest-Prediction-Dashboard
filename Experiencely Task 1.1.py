@@ -25,16 +25,23 @@ helpdesk_datatypes = helpdesk.dtypes
 new_helpdesk = helpdesk.drop(columns = ["Team Lead", "Unnamed: 22", "SR No.", "Corrective Actions", 
                                         "Preventive Actions", "Closed By"])
 
-# Convert the columns with date and time to datetime format
-new_helpdesk["Date Created"] = pd.to_datetime(new_helpdesk["Date Created"])
-new_helpdesk["Last Updated"] = pd.to_datetime(new_helpdesk["Last Updated"])
-new_helpdesk["Due Date"] = pd.to_datetime(new_helpdesk["Due Date"])
+# # Convert the columns with date and time to datetime format
+# new_helpdesk["Date Created"] = pd.to_datetime(new_helpdesk["Date Created"])
+# new_helpdesk["Last Updated"] = pd.to_datetime(new_helpdesk["Last Updated"])
+# new_helpdesk["Due Date"] = pd.to_datetime(new_helpdesk["Due Date"])
 
-# Fill missing "Due Date" with a random number of days (1 to 31) before "Last Updated"
-new_helpdesk['Due Date'] = new_helpdesk.apply(
-    lambda row: row['Last Updated'] - pd.Timedelta(days=np.random.randint(1, 32))
-    if pd.isna(row['Due Date']) and pd.notna(row['Last Updated']) else row['Due Date'],
-    axis=1
+# Convert columns with date and time to the correct datetime format
+datetime_columns = ["Date Created", "Last Updated", "Due Date"]
+
+for col in datetime_columns:
+    if col in new_helpdesk.columns:
+        new_helpdesk[col] = pd.to_datetime(new_helpdesk[col])
+
+# Fill missing date in "Due Date" with a random value between 1 to 31 days before the date in "Last Updated"
+new_helpdesk["Due Date"] = new_helpdesk.apply(
+    lambda row: row["Last Updated"] - pd.Timedelta(days = np.random.randint(1, 32))
+    if pd.isna(row["Due Date"]) and pd.notna(row["Last Updated"]) else row["Due Date"],
+    axis = 1
 )
 
 # Drop duplicate rows and keep only unique ones from the new dataframe
