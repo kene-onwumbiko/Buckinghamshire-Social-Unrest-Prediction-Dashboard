@@ -44,6 +44,9 @@ new_helpdesk["Due Date"] = new_helpdesk.apply(
     axis = 1
 )
 
+# Fill missing values in the "Type" column with "Incident / Problem"
+new_helpdesk["Type"] = new_helpdesk["Type"].fillna("Incident / Problem")
+
 # Drop duplicate rows and keep only unique ones from the new dataframe
 new_helpdesk = new_helpdesk.drop_duplicates()
 
