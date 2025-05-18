@@ -40,7 +40,8 @@ for col in ["Date Created", "Last Updated", "Due Date"]:
 
 # Fill missing date in "Due Date" with a random value between 1 to 31 days before the date in "Last Updated"
 
-
+# This is based on the observation that most of the dates in the "Due Date" column occur a few days before 
+# the corresponding dates in the "Last Updated" column.
 new_helpdesk["Due Date"] = new_helpdesk.apply(
     lambda row: row["Last Updated"] - pd.Timedelta(days = np.random.randint(1, 32))
     if pd.isna(row["Due Date"]) and pd.notna(row["Last Updated"]) else row["Due Date"],
@@ -56,8 +57,8 @@ new_helpdesk["Type"] = new_helpdesk["Type"].fillna("Incident / Problem")
 
 # Fill missing values in "Category", "Issue Origin", and "Select Ticket Status Update" with a random pick from its unique values
 
-# This is because the values in these columns are highly varied, making it difficult to identify any 
-# reliable pattern for filling in the missing data. 
+# This is because the values in "Category", "Issue Origin", and "Select Ticket Status Update" columns are 
+# highly varied, making it difficult to identify any reliable pattern for filling in the missing data. 
 for column in ["Category", "Issue Origin", "Select Ticket Status Update"]:
     unique_values = new_helpdesk[column].dropna().unique()
     new_helpdesk[column] = new_helpdesk[column].apply(
@@ -80,3 +81,8 @@ new_helpdesk_duplicatedvalues = new_helpdesk.duplicated()
 # Check the data types for inconsistent data
 new_helpdesk_datatypes = new_helpdesk.dtypes
 
+
+
+
+# Save the new dataframe to a CSV file
+new_helpdesk.to_csv("new_helpdesk_tickets.csv", index = False)
