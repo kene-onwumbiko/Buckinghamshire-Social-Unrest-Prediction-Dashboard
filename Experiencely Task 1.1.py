@@ -6,6 +6,7 @@ Created on Thu May  8 18:14:56 2025
 """
 
 # Import library
+import numpy as np
 import pandas as pd
 
 # Load the dataset
@@ -29,11 +30,21 @@ new_helpdesk["Date Created"] = pd.to_datetime(new_helpdesk["Date Created"])
 new_helpdesk["Last Updated"] = pd.to_datetime(new_helpdesk["Last Updated"])
 new_helpdesk["Due Date"] = pd.to_datetime(new_helpdesk["Due Date"])
 
+# Fill missing "Due Date" with a random number of days (1 to 31) before "Last Updated"
+new_helpdesk['Due Date'] = new_helpdesk.apply(
+    lambda row: row['Last Updated'] - pd.Timedelta(days=np.random.randint(1, 32))
+    if pd.isna(row['Due Date']) and pd.notna(row['Last Updated']) else row['Due Date'],
+    axis=1
+)
+
 # Drop duplicate rows and keep only unique ones from the new dataframe
 new_helpdesk = new_helpdesk.drop_duplicates()
 
 # # Drop all rows with any missing values from the new dataframe
 # new_helpdesk = new_helpdesk.dropna(axis = 0)
+
+# # Fill all missing values with 'N/A'
+# new_helpdesk.fillna("N/A", inplace = True)
 
 # Check for missing values in the new dataframe
 new_helpdesk_missingvalues = new_helpdesk.isnull().sum()
