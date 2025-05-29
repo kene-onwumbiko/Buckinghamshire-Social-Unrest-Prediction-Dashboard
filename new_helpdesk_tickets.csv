@@ -1,5 +1,5 @@
 Metric,Value (Formula in this Cell)
-Total Tickets - AWS Team  ,16
+Total Tickets - AWS Team  ,
 Total Tickets - Hardware Team  ,3
 Total Tickets - Help Desk Team  ,35
 Total Tickets - JDE Support Team  ,252
@@ -8,3 +8,11 @@ Total Tickets - Salesforce Team  ,8
 Total Tickets - SAP Support Team  ,194
 Total Tickets - Workday Team  ,8
 Total Tickets - BPM - ProcessMaker Support Team,2
+,
+Total Tickets - Emergency Priority,53
+Total Tickets - High Priority,119
+Total Tickets - Low Priority,44
+Total Tickets - Normal Priority,340
+,
+Total Tickets - Incident / Problem Type,380
+Total Tickets - Request Type,176
