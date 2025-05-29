@@ -1,5 +1,5 @@
-Metric,Value (Formula in this Cell)
-Total Tickets - AWS Team  ,
+METRIC,VALUE
+Total Tickets - AWS Team  ,16
 Total Tickets - Hardware Team  ,3
 Total Tickets - Help Desk Team  ,35
 Total Tickets - JDE Support Team  ,252
@@ -8,15 +8,22 @@ Total Tickets - Salesforce Team  ,8
 Total Tickets - SAP Support Team  ,194
 Total Tickets - Workday Team  ,8
 Total Tickets - BPM - ProcessMaker Support Team,2
-,
+TOTAL TEAM TICKETS,556
 Total Tickets - Emergency Priority,53
 Total Tickets - High Priority,119
 Total Tickets - Low Priority,44
 Total Tickets - Normal Priority,340
-,
+TOTAL PRIORITY TICKETS,556
 Total Tickets - Incident / Problem Type,380
 Total Tickets - Request Type,176
-,
-Total Tickets - Open,64
-Total Tickets - Resolved,14
-Total Tickets - Closed,478
+TOTAL TYPE TICKETS,556
+Total Tickets - Open Current Status,64
+Total Tickets - Resolved Current Status,14
+Total Tickets - Closed Current Status,478
+Total Tickets - Open/Answered (Assuming Answered is Resolved) Current Status,78
+TOTAL CURRENT STATUS TICKETS,556
+Total Tickets - Email Source,31
+Total Tickets - Web Source,498
+Total Tickets - Phone Source,24
+Total Tickets - Other Source,3
+TOTAL SOURCE TICKETS,556
